@@ -1,0 +1,29 @@
+class Solution {
+public:
+void helper(int open,int close,string &curr,vector<string> &ans,int n)
+{
+    if(curr.length() == 2 *n)
+    {
+        ans.push_back(curr);
+        return;
+    }
+    if(open < n)
+    {
+        curr += '(';
+        helper(open+1,close,curr,ans,n);
+        curr.pop_back();
+    }
+    if(open > close)
+    {
+        curr += ')';
+        helper(open,close+1,curr,ans,n);
+        curr.pop_back();
+    }
+}
+    vector<string> generateParenthesis(int n) {
+        string curr = "";
+        vector<string> ans;
+        helper(0,0,curr,ans,n);
+        return ans;
+    }
+};
